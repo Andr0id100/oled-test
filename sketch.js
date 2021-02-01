@@ -1,17 +1,25 @@
+let circles = []
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(0)
+  stroke(255, 0, 255)
+  noFill()
 }
 
 function draw() {
+  clear()
+  background(0)
   
+  circles = circles.filter(x => x.radius < 500)
+  circles.forEach(x => x.radius += 1)
+  circles.forEach(x => circle(x.x, x.y, x.radius))
 }
 
 function mouseClicked() {
-  stroke(255, 0, 0)
-  strokeWeight(5)
-  fill(0, 0, 255) 
-  
-    circle(mouseX, mouseY, 20)
-
+ 
+  circles.push({
+    x: mouseX,
+    y: mouseY,
+    radius: 0.1
+  })
 }
